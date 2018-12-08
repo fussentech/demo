@@ -1,5 +1,8 @@
 /*
  * Fussen Technologies
+ * 
+ * Class for password generation with letters (upper/lower), digits & symbols
+ *
  */
 
 package com.fussentech.infra.utils;
