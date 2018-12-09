@@ -1,4 +1,4 @@
-package com.amechine.infra.utils;
+package com.fussentech.infra.utils;
 
 import static org.junit.Assert.*;
 
@@ -6,81 +6,81 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
-public class PwdGeneratorTest {
+public class PasswordGeneratorTest {
 
-	//@Test
+	@Test
 	public void testDigitWithPositiveLen() {
 		int len = 15;
-		PwdGenerator pwdgen = new PwdGenerator.Builder().useDigit()
+		PasswordGenerator pswdgen = new PasswordGenerator.Builder().useDigit()
 														.build();
-		String pwd = pwdgen.generatePassword(len);
-		System.out.println(pwd);
-		assertEquals(len, pwd.length());
-		assertTrue(pwd.matches("[0-9]+"));
+		String pswd = pswdgen.generatePassword(len);
+		System.out.println(pswd);
+		assertEquals(len, pswd.length());
+		assertTrue(pswd.matches("[0-9]+"));
 	}
 	
-	//@Test
+	@Test
 	public void testLowercase() {
 		int len = 8;
-		PwdGenerator pwdgen = new PwdGenerator.Builder().useLower()
+		PasswordGenerator pswdgen = new PasswordGenerator.Builder().useLower()
 														.build();
-		String pwd = pwdgen.generatePassword(len);
-		System.out.println(pwd);
-		assertEquals(len, pwd.length());
-		assertTrue(pwd.matches("[a-z]+"));
+		String pswd = pswdgen.generatePassword(len);
+		System.out.println(pswd);
+		assertEquals(len, pswd.length());
+		assertTrue(pswd.matches("[a-z]+"));
 	}
 	
-	//@Test
+	@Test
 	public void testAllCombinations() {
 		int len = 10;
-		PwdGenerator pwdgen = new PwdGenerator.Builder().useUpper()
+		PasswordGenerator pswdgen = new PassworddGenerator.Builder().useUpper()
 														.useLower()
 														.useDigit()
 														.useSymbol()
 														.build();
-		String pwd = pwdgen.generatePassword(len);
-		System.out.println(pwd);
-		assertEquals(len, pwd.length());
+		String pswd = pswdgen.generatePassword(len);
+		System.out.println(pswd);
+		assertEquals(len, pswd.length());
 	}
 	
-	//@Test
+	@Test
 	public void testUppercase() {
 		int len = 16;
-		PwdGenerator pwdgen = new PwdGenerator.Builder().useUpper()
+		PasswordGenerator pswdgen = new PasswordGenerator.Builder().useUpper()
 														.build();
-		String pwd = pwdgen.generatePassword(len);
-		System.out.println(pwd);
-		assertEquals(len, pwd.length());
-		assertTrue(pwd.matches("[A-Z]+"));
+		String pswd = pswdgen.generatePassword(len);
+		System.out.println(pswd);
+		assertEquals(len, pswd.length());
+		assertTrue(pswd.matches("[A-Z]+"));
 	}
 	
-	//@Test
+	@Test
 	public void testWithLen0() {
 		int len = 0;
-		PwdGenerator pwdgen = new PwdGenerator.Builder().useUpper()
+		PasswordGenerator pswdgen = new PasswordGenerator.Builder().useUpper()
 														.useLower()
 														.useDigit()
 														.useSymbol()
 														.build();
-		String pwd = pwdgen.generatePassword(len);
-		System.out.println(pwd);
-		assertEquals("", pwd);
-	}
-
-	//@Test
-	public void testWithNegativeLen() {
-		int len = -4;
-		PwdGenerator pwdgen = new PwdGenerator.Builder().useUpper()
-														.useLower()
-														.useDigit()
-														.useSymbol()
-														.build();
-		String pwd = pwdgen.generatePassword(len);
-		System.out.println(pwd);
-		assertEquals("", pwd);
+		String pswd = pswdgen.generatePassword(len);
+		System.out.println(pswd);
+		assertEquals("", pswd);
 	}
 
 	@Test
+	public void testWithNegativeLen() {
+		int len = -4;
+		PasswordGenerator pswdgen = new PasswordGenerator.Builder().useUpper()
+														.useLower()
+														.useDigit()
+														.useSymbol()
+														.build();
+		String pswd = pswdgen.generatePassword(len);
+		System.out.println(pswd);
+		assertEquals("", pswd);
+	}
+
+	//@Test
 	public void testFlowManually() {
 		
 		String msg = "Generate password use:\n"
@@ -106,7 +106,7 @@ public class PwdGeneratorTest {
 				System.out.println("Invalid option.");
 			}
 		}
-		PwdGenerator.Builder builder = new PwdGenerator.Builder();
+		PasswordGenerator.Builder builder = new PasswordGenerator.Builder();
 		switch(selection) {
 		case 4:
 			builder.useSymbol();
@@ -120,19 +120,19 @@ public class PwdGeneratorTest {
 		default:
 			break;
 		}
-		int pwdLen = 0;
+		int pswdLen = 0;
 		while (true) {
 			System.out.println("Please provide password length (minimum is 6):");
-			pwdLen = in.nextInt();
-			if (pwdLen < 6) {
+			pswdLen = in.nextInt();
+			if (pswdLen < 6) {
 				System.out.println("Too short.");
 			}
 			else {
 				break;
 			}
 		}
-		PwdGenerator pwdgen = builder.build();
-		String pwd = pwdgen.generatePassword(pwdLen);
-		System.out.println("Password is " + pwd);
+		PwdGenerator pswdgen = builder.build();
+		String pswd = pswdgen.generatePassword(pswdLen);
+		System.out.println("Password is " + pswd);
 	}
 }
